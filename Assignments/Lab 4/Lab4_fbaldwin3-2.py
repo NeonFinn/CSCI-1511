@@ -1,8 +1,11 @@
+# Hangman - Finn Baldwin 1/31/25
+
 import random
 
-number_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15] # random number list
-wrong_guesses = 0 # wrong guess counter
-game_over = False # current game status
+number_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+wrong_guesses = 0
+game_over = False
+
 random_number = random.choice(number_list) # generates a random number from the list
 
 # list of hangman iterations
