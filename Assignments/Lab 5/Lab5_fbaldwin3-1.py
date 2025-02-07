@@ -29,7 +29,7 @@ while user_input.lower() != 'quit':
     elif roll1 + roll2 == 9:
         print('Nina from Pasadena')
     elif roll1 == 5 and roll2 == 5:
-        print('Puppy Paws!')
+        print('Puppy Paws')
     elif (roll1 == 6 and roll2 == 5) or (roll1 == 5 and roll2 == 6):
         print('Six Five No Jive')
     elif roll1 + roll2 == 12:
