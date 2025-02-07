@@ -39,4 +39,5 @@ while user_input.lower() != 'quit':
 
     user_input = input('Press enter to roll again or type "quit" to exit: ')
 
-print('You have quit the program.')
+print('--------------------------------------------------')
+print('You have quit the program')
