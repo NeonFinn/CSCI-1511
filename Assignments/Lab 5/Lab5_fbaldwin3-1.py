@@ -22,7 +22,7 @@ while user_input.lower() != 'quit':
         print('Little Phoebe')
     elif roll1 == 3 and roll2 == 3:
         print('Jimmy Hicks from the Sticks')
-    elif roll1 == 6 and roll2 == 1:
+    elif (roll1 == 6 and roll2 == 1) or (roll1 == 1 and roll2 == 6):
         print('Six Ace')
     elif roll1 == 4 and roll2 == 4:
         print('Eighter from Decatur')
@@ -30,7 +30,7 @@ while user_input.lower() != 'quit':
         print('Nina from Pasadena')
     elif roll1 == 5 and roll2 == 5:
         print('Puppy Paws!')
-    elif roll1 == 6 and roll2 == 5:
+    elif (roll1 == 6 and roll2 == 5) or (roll1 == 5 and roll2 == 6):
         print('Six Five No Jive')
     elif roll1 + roll2 == 12:
         print('Boxcars')
