@@ -17,38 +17,37 @@ print("2 - Find a Grandfather")
 print("3 - List Sons")
 
 choice = input('Choice: ')
-print('---------------------------------')
+print('------------------------------------------------------------------')
 
 while choice != '0':
     if choice == '1':
         son_name = input('Enter son: ').lower().strip()
         if son_name in sons_and_fathers:
             print(f'His father is {sons_and_fathers[son_name].title()}')
-            print('---------------------------------')
+            print('------------------------------------------------------------------')
         else:
             print(f'The father of "{son_name.title()}" does not exist in this database')
-            print('---------------------------------')
+            print('------------------------------------------------------------------')
     elif choice == '2':
         son_name = input('Enter grandson: ').lower().strip()
         if son_name in sons_and_fathers:
             father = sons_and_fathers[son_name]
             if father in sons_and_fathers:
                 print(f'His grandfather is {sons_and_fathers[father].title()}')
-                print('---------------------------------')
+                print('------------------------------------------------------------------')
             else:
                 print(f'The grandfather of "{son_name.title()}" does not exist in this database')
-                print('---------------------------------')
+                print('------------------------------------------------------------------')
         else:
             print(f'The grandfather of "{son_name.title()}" does not exist in this database')
-            print('---------------------------------')
+            print('------------------------------------------------------------------')
     elif choice == '3':
         for sons in sons_and_fathers:
             print(sons.title())
-        print('---------------------------------')
+        print('------------------------------------------------------------------')
     else:
         print('Invalid choice')
-        print('---------------------------------')
-
+        print('------------------------------------------------------------------')
 
     print("Father Finder")
     print("0 - Quit")
@@ -56,6 +55,6 @@ while choice != '0':
     print("2 - Find a Grandfather")
     print("3 - List Sons")
     choice = input('Choice: ')
-    print('---------------------------------')
+    print('------------------------------------------------------------------')
 
 print('Thank you for using Father Finder. Goodbye!')
