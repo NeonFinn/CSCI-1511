@@ -26,7 +26,7 @@ while choice != '0':
             print(f'His father is {sons_and_fathers[son_name].title()}')
             print('---------------------------------')
         else:
-            print('Father not found')
+            print(f'The father of "{son_name.title()}" does not exist in this database')
             print('---------------------------------')
     elif choice == '2':
         son_name = input('Enter grandson: ').lower().strip()
@@ -36,10 +36,10 @@ while choice != '0':
                 print(f'His grandfather is {sons_and_fathers[father].title()}')
                 print('---------------------------------')
             else:
-                print('Grandfather not found')
+                print(f'The grandfather of "{son_name.title()}" does not exist in this database')
                 print('---------------------------------')
         else:
-            print('Son not found')
+            print(f'The grandfather of "{son_name.title()}" does not exist in this database')
             print('---------------------------------')
     elif choice == '3':
         for sons in sons_and_fathers:
@@ -47,6 +47,8 @@ while choice != '0':
         print('---------------------------------')
     else:
         print('Invalid choice')
+        print('---------------------------------')
+
 
     print("Father Finder")
     print("0 - Quit")
