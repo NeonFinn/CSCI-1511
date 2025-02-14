@@ -26,7 +26,7 @@ while choice != '0':
             print(f'His father is {sons_and_fathers[son_name].title()}')
             print('---------------------------------')
         else:
-            print('Father not found')
+            print('Invalid input')
             print('---------------------------------')
     elif choice == '2':
         son_name = input('Enter grandson: ').lower().strip()
