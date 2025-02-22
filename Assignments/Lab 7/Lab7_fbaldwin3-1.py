@@ -9,6 +9,7 @@ username_password = {'guest': 'guest',
 
 input_username = input("Please provide your username: ")
 
+# checks for username and password in dictionary, exits if not found
 if input_username in username_password:
     input_password = input("Please provide your password: ")
     if input_password == username_password[input_username]:
