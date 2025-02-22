@@ -42,4 +42,4 @@ else:
     print("Security level: 4 (Not Good)")
 
 # keeps window open to read output
-input()
+input("Press enter to exit")
