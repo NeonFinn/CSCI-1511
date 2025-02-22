@@ -41,4 +41,5 @@ elif any(character.isupper() for character in input_password):
 else:
     print("Security level: 4 (Not Good)")
 
+# keeps window open to read output
 input()
