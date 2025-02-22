@@ -1,6 +1,11 @@
 import os
 
-username_password = {'guest': 'guest', 'jdoe': 'password', 'rsmith': 'Eggs', 'fbaldwin': 'fb12345', 'mjones': 'OakL0g'}
+username_password = {'guest': 'guest',
+                     'jdoe': 'password',
+                     'rsmith': 'Eggs',
+                     'fbaldwin': 'fb12345',
+                     'mjones': 'OakL0g'
+                     }
 
 input_username = input("Please provide your username: ")
 
