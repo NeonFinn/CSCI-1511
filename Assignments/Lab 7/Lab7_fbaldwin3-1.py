@@ -23,19 +23,19 @@ else:
 if input_password == 'guest':
     print("Security level: 5 (Bad)")
 
-# checks for at least one uppercase and one digit (i had to research how to check for 'any' in a string)
+# then checks for at least one uppercase and one digit (i had to research how to check for 'any' in a string)
 elif (any(character.isupper() for character in input_password)) and \
         (any(character.isdigit() for character in input_password)):
     print("Security level: 1 (Really Good)")
 
-# checks for at least one digit
+# then checks for at least one digit
 elif any(character.isdigit() for character in input_password):
     print("Security level: 2 (Good)")
 
-# checks for at least one uppercase
+# then checks for at least one uppercase
 elif any(character.isupper() for character in input_password):
     print("Security level: 3 (Decent)")
 
-# catches the other option here, all lowercase
+# catches the only other option here, all lowercase
 else:
     print("Security level: 4 (Not Good)")
