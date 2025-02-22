@@ -40,3 +40,5 @@ elif any(character.isupper() for character in input_password):
 # catches the only other option here, all lowercase
 else:
     print("Security level: 4 (Not Good)")
+
+input()
