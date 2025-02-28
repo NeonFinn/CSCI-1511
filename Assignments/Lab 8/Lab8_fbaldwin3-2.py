@@ -41,7 +41,7 @@ def main():
             Rectangle.rectangle_perimeter_finder(width, height)
             print("-----------------------------------")
         elif user_choice == "5":
-            print("Goodbye!")
+            print("Exiting program...")
             break
         else:
             print("Invalid choice. Please try again.")
