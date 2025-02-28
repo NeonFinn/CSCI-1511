@@ -1,17 +1,14 @@
 import Circle
 import Rectangle
 
-def invalid_input():
-    print("-----------------------------------")
-    print("Invalid input. Please try again.")
-    print("-----------------------------------")
-
-def input_validation(prompt):
-    value = input(prompt)
+def input_validation(user_input):
+    value = input(user_input)
     if value.replace(".", "", 1).isdigit():
         return float(value)
     else:
-        invalid_input()
+        print("-----------------------------------")
+        print("Invalid input. Please try again.")
+        print("-----------------------------------")
 
 def main():
     while True:
