@@ -9,9 +9,9 @@ def input_validation(user_input):
     if value.replace(".", "", 1).isdigit():
         return float(value)
     else:
-        print("-----------------------------------")
+        print("---------------------------------------")
         print("Invalid input. Please try again.")
-        print("-----------------------------------")
+        print("---------------------------------------")
 
 # keeps asking the user for input until they choose to quit, uses input_validation function to check for valid inputs
 def main():
@@ -24,31 +24,31 @@ def main():
         print("5) Quit")
 
         user_choice = (input("Enter your choice: "))
-        print("-----------------------------------")
+        print("---------------------------------------")
 
         if user_choice == "1":
             radius = input_validation("Enter the radius of the circle: ")
             Circle.circle_area_finder(radius)
-            print("-----------------------------------")
+            print("---------------------------------------")
         elif user_choice == "2":
             radius = input_validation("Enter the radius of the circle: ")
             Circle.circle_circumference_finder(radius)
-            print("-----------------------------------")
+            print("---------------------------------------")
         elif user_choice == "3":
             width = input_validation("Enter the width of the rectangle: ")
             height = input_validation("Enter the height of the rectangle: ")
             Rectangle.rectangle_area_finder(width, height)
-            print("-----------------------------------")
+            print("---------------------------------------")
         elif user_choice == "4":
             width = input_validation("Enter the width of the rectangle: ")
             height = input_validation("Enter the height of the rectangle: ")
             Rectangle.rectangle_perimeter_finder(width, height)
-            print("-----------------------------------")
+            print("---------------------------------------")
         elif user_choice == "5":
             print("Exiting program...")
             break
         else:
             print("Invalid choice. Please try again.")
-            print("-----------------------------------")
+            print("---------------------------------------")
 
 main()
