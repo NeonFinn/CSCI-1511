@@ -1,8 +1,11 @@
 import Circle
 import Rectangle
 
+# checks for valid input, including floats
 def input_validation(user_input):
     value = input(user_input)
+    # replaces "." with "" to check if the string is a float, the 1 insures that only the first "." is replaced
+    # if no "." is found, the string is checked to see if it is a digit
     if value.replace(".", "", 1).isdigit():
         return float(value)
     else:
@@ -10,6 +13,7 @@ def input_validation(user_input):
         print("Invalid input. Please try again.")
         print("-----------------------------------")
 
+# keeps asking the user for input until they choose to quit, uses input_validation function to check for valid inputs
 def main():
     while True:
         print("       MENU")
