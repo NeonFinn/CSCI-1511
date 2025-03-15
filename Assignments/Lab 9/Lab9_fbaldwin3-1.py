@@ -45,5 +45,6 @@ def main():
         input()
     else:
         print("It's a tie!")
+        input()
 
 main()
