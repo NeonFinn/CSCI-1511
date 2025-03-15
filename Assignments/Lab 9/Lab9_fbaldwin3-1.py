@@ -38,13 +38,13 @@ def main():
     print(f"Player 2 Coins: {player2.get_amount()}")
 
     if player1.get_amount() > player2.get_amount():
-        print("Player 1 wins the game!")
+        print("Player 1 wins the game! Press enter to close.")
         input()
     elif player2.get_amount() > player1.get_amount():
-        print("Player 2 wins the game!")
+        print("Player 2 wins the game! Press enter to close.")
         input()
     else:
-        print("It's a tie!")
+        print("It's a tie! Press enter to close.")
         input()
 
 main()
