@@ -33,7 +33,6 @@ def main():
 
         play = input("Do you want to continue playing? (y/n): ").lower()
 
-
     print(f"Player 1 Coins: {player1.get_amount()}")
     print(f"Player 2 Coins: {player2.get_amount()}")
 
