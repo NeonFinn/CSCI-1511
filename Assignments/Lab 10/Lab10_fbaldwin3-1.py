@@ -1,16 +1,14 @@
 def word_frequency(content):
     frequency = {}
 
-    # Define which characters to remove
-    punctuation_characters = ".,;:!?\"'()[]{}"
+    # Define punctuation characters
+    punctuation_characters = "!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~"
 
-    # Remove punctuation and convert to lowercase
-    while True:
-        for character in punctuation_characters:
-            content = content.replace(character, "").lower()
-        break
+    # Remove punctuation, make lowercase, and strip whitespace
+    for character in punctuation_characters:
+        content = content.replace(character, "").lower().strip()
 
-    # Split the content into words
+    # Split the file into words
     words = content.split()
 
     # Count word occurrences
@@ -20,7 +18,7 @@ def word_frequency(content):
     return frequency
 
 def print_words(frequency):
-    # Print words and their counts, sorted alphabetically
+    # Print words alphabetically and their counts
     for word in sorted(frequency.keys()):
         print(word, frequency[word])
 
@@ -30,13 +28,14 @@ def main():
         filename = input("Enter the filename: ")
 
         # Read the file content
-        with open(filename, "r") as file:
-            content = file.read()
+        file = open(filename, "r")
+        content = file.read()
+        file.close()
 
-        # Process word frequency
+        # Call word frequency function
         word_data = word_frequency(content)
 
-        # Print the results
+        # Call print function
         print_words(word_data)
 
     except:
