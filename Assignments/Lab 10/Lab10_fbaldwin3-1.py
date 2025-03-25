@@ -41,8 +41,7 @@ def main():
         input()
 
     except:
-        print(f"File {filename} cannot be read. Press enter to exit.")
-        input()
+        print(f"File {filename} cannot be read..")
         os.close(1)
 
 main()
