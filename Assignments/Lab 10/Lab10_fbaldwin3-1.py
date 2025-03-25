@@ -35,7 +35,7 @@ def main():
         content = file.read()
         file.close()
 
-        # Call word frequency function to assign data
+        # Call word frequency function to assign to data
         word_data = word_frequency(content)
 
         # Call print function
