@@ -1,4 +1,6 @@
 # Finn Baldwin, 3/25/25, Lab 10 - Count word frequency in a file from user input
+import os
+
 
 def word_frequency(content):
     frequency = {}
@@ -39,10 +41,11 @@ def main():
         # Call print function
         print_words(word_data)
 
+        # Keep file open
+        input()
+
     except:
         print(f"File {filename} cannot be read.")
+        os.close(1)
 
 main()
-
-# Keep file open
-input()
