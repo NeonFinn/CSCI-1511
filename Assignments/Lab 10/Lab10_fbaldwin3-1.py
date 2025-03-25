@@ -1,7 +1,8 @@
+# Finn Baldwin, 3/25/25, Lab 10 - Count word frequency in a file from user input
+
 def word_frequency(content):
     frequency = {}
 
-    # Define punctuation characters
     punctuation_characters = "!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~"
 
     # Remove punctuation, make lowercase, and strip whitespace
@@ -27,12 +28,12 @@ def main():
         # Get the filename from the user
         filename = input("Enter the filename to process: ")
 
-        # Read the file content
+        # Read the file content then close the file
         file = open(filename, "r")
         content = file.read()
         file.close()
 
-        # Call word frequency function
+        # Call word frequency function to assign data
         word_data = word_frequency(content)
 
         # Call print function
