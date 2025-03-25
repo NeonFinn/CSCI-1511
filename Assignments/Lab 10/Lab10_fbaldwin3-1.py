@@ -20,12 +20,12 @@ def word_frequency(content):
 def print_words(frequency):
     # Print words alphabetically and their counts
     for word in sorted(frequency.keys()):
-        print(word, frequency[word])
+        print(f"{word} - {frequency[word]}")
 
 def main():
     try:
         # Get the filename from the user
-        filename = input("Enter the filename: ")
+        filename = input("Enter the filename to process: ")
 
         # Read the file content
         file = open(filename, "r")
@@ -42,3 +42,6 @@ def main():
         print(f"File {filename} cannot be read.")
 
 main()
+
+# Keep file open
+input()
