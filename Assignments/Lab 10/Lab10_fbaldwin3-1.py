@@ -24,7 +24,7 @@ def word_frequency(file):
             lowercase_word = word.lower()
 
             # Add the word to the dictionary, or update its count if already present
-            frequency[lowercase_word] = lowercase_word.get(lowercase_word, 0) + 1
+            frequency[lowercase_word] = frequency.get(lowercase_word, 0) + 1
 
         # Read the next line from the file
         line = file.readline()
@@ -43,8 +43,12 @@ def main():
         filename = input("Enter the filename: ")
 
         # Read file
-        content = file.read()
-        return content
+        with open(filename, "r") as file:
+            content = file.read()
+
+        word_data = word_frequency(content)
+
+        print_words(word_data)
 
     except:
         print(f"The file {filename} is not readable.")
