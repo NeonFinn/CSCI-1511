@@ -1,7 +1,6 @@
 # Finn Baldwin, 3/25/25, Lab 10 - Count word frequency in a file from user input
 import os
 
-
 def word_frequency(content):
     frequency = {}
 
