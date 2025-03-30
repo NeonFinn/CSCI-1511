@@ -10,7 +10,7 @@ def main():
     while True:
         try:
             rotation = (input("Enter a rotation: "))
-            # I had to add this in because my test case for valid input was failing, saying that str cannot be converted to int
+            # I had to add this in because my test case for invalid input was failing, saying that str cannot be converted to int
             if (rotation.isdigit()) or (rotation[0] == '-' and rotation[1:].isdigit()):
                 print(rotation_adjustment(rotation))
             else:
