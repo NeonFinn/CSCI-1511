@@ -1,4 +1,5 @@
 def rotation_adjustment(rotation):
+    rotation = int(rotation)
     if rotation < 0:
         rotation = rotation % 360
     elif rotation > 360:
@@ -10,7 +11,6 @@ def main():
         try:
             rotation = (input("Enter a rotation: "))
             if (rotation.isdigit()) or (rotation[0] == '-' and rotation[1:].isdigit()):
-                rotation = int(rotation)
                 print(rotation_adjustment(rotation))
             else:
                 raise ValueError
