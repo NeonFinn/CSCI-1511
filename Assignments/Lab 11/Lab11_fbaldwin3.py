@@ -1,18 +1,22 @@
 def rotation_adjustment(rotation):
+    rotation = int(rotation)
     if rotation < 0:
-        rotation = rotation + 360
+        rotation = rotation % 360
     elif rotation > 360:
-        rotation = rotation - 360
+        rotation = rotation % 360
     return rotation
 
 def main():
     while True:
         try:
-            rotation = int(input("Enter a rotation: "))
-            print(rotation_adjustment(rotation))
-            if input("Press q to quit or enter to continue: ") == "q" or "Q":
+            rotation = (input("Enter a rotation: "))
+            if (rotation.isdigit()) or (rotation[0] == '-' and rotation[1:].isdigit()):
+                print(rotation_adjustment(rotation))
+            else:
+                raise ValueError
+            if input("Press q to quit or enter to continue: ") == "q":
                 break
-        except ValueError:
+        except:
             print("Invalid input. Please enter a number.")
 
 if __name__ == "__main__":

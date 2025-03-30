@@ -15,3 +15,7 @@ def test_negative():
     expected = 260
     actual = rotation_adjustment(-100)
     assert actual == expected
+
+def test_invalid_input():
+    with pytest.raises(ValueError):
+        rotation_adjustment("hello")
