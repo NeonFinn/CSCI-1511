@@ -8,8 +8,10 @@ def main():
         try:
             rotation = (input("Enter a rotation: "))
             print(rotation_adjustment(rotation))
+            print("---------------------------------------")
             if input("Press q to quit or enter to continue: ").strip().lower() == "q":
                 break
+            print("---------------------------------------")
         except ValueError:
             print("Invalid input. Please enter a number.")
 
