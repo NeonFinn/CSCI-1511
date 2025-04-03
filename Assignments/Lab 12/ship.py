@@ -1,4 +1,5 @@
 import pygame
+from settings import Settings
 
 class Ship:
     def __init__ (self, ai_game):
@@ -13,11 +14,17 @@ class Ship:
         self.moving_right = False
         self.moving_left = False
 
+        self.settings = Settings()
+
+        self.x = float(self.rect.x)
+
     def update(self):
         if self.moving_right:
-            self.rect.x += 1
+            self.x += self.settings.ship_speed
         elif self.moving_left:
-            self.rect.x -= 1
+            self.x -= self.settings.ship_speed
+
+        self.rect.x = self.x
 
     def blit_me(self):
         self.screen.blit(self.image, self.rect)

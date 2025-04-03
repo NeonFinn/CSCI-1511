@@ -1,4 +1,5 @@
 class Settings:
+
     def __init__(self):
         self.game_name = "Alien Invasion"
         self.screen_width = 1200
@@ -6,3 +7,4 @@ class Settings:
         self.resolution = (self.screen_width, self.screen_height)
         self.bg_color = (230, 230, 230)
         self.frame_rate = 60
+        self.ship_speed = 1.5
