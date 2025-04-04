@@ -1,5 +1,4 @@
 import pygame
-from settings import Settings
 
 class Ship:
     def __init__ (self, ai_game):
@@ -14,7 +13,7 @@ class Ship:
         self.moving_right = False
         self.moving_left = False
 
-        self.settings = Settings()
+        self.settings = ai_game.settings
 
         self.x = float(self.rect.x)
 
