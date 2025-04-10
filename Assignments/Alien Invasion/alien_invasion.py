@@ -18,12 +18,27 @@ class AlienInvasion:
 
         self._create_fleet()
 
+    def _check_fleet_edges(self):
+        for alien in self.aliens.sprites():
+            if alien.check_edges():
+                self._change_fleet_direction()
+                break
+
+    def _change_fleet_direction(self):
+        for alien in self.aliens.sprites():
+            alien.rect.y += self.settings.fleet_drop_speed
+
+        self.settings.fleet_direction *= -1
+
     def _create_alien(self, x_position, y_position):
         new_alien = Alien(self)
         new_alien.x = x_position
         new_alien.rect.x = x_position
         new_alien.rect.y = y_position
         self.aliens.add(new_alien)
+
+    def _update_aliens(self):
+        self.aliens.update()
 
     def _create_fleet(self):
         alien = Alien(self)
@@ -93,6 +108,8 @@ class AlienInvasion:
             self._check_events()
             self.ship.update()
             self._update_bullets()
+            self._check_fleet_edges()
+            self._update_aliens()
             self._update_screen()
             self.clock.tick(self.settings.frame_rate)
 
