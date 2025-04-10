@@ -5,7 +5,6 @@ from ship import Ship
 from bullet import Bullet
 
 class AlienInvasion:
-
     def __init__(self):
         pygame.init()
         self.settings = Settings()
