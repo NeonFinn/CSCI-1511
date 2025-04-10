@@ -3,6 +3,7 @@ import pygame
 from settings import Settings
 from ship import Ship
 from bullet import Bullet
+from alien import Alien
 
 class AlienInvasion:
     def __init__(self):
@@ -12,7 +13,25 @@ class AlienInvasion:
         self.clock = pygame.time.Clock()
         self.ship = Ship(self)
         self.bullets = pygame.sprite.Group()
+        self.aliens = pygame.sprite.Group()
         pygame.display.set_caption(self.settings.game_name)
+
+        self._create_fleet()
+
+    def _create_alien(self, x_position):
+        new_alien = Alien(self)
+        new_alien.x = x_position
+        new_alien.rect.x = x_position
+        self.aliens.add(new_alien)
+
+    def _create_fleet(self):
+        alien = Alien(self)
+        alien_width = alien.rect.width
+
+        current_x = alien_width
+        while current_x < self.settings.screen_width - (2 * alien_width):
+            self._create_alien(current_x)
+            current_x += (2 * alien_width)
 
     def _check_keydown_events(self, event):
         if event.key == pygame.K_RIGHT:
@@ -50,6 +69,7 @@ class AlienInvasion:
             bullet.draw_bullet()
 
         self.ship.blit_me()
+        self.aliens.draw(self.screen)
 
         pygame.display.flip()
 
