@@ -60,6 +60,7 @@ class AlienInvasion:
         self.aliens.update()
         self._check_aliens_player_ship_collision()
         self._check_aliens_bottom()
+        self._check_fleet_edges()
 
     def _check_aliens_player_ship_collision(self):
         if pygame.sprite.spritecollideany(self.ship, self.aliens):
@@ -150,7 +151,6 @@ class AlienInvasion:
             if self.game_active:
                 self.ship.update()
                 self._update_bullets()
-                self._check_fleet_edges()
                 self._update_aliens()
 
             self._update_screen()
