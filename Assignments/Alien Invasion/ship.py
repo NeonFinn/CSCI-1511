@@ -1,11 +1,14 @@
 import pygame
+from pygame.sprite import Sprite
 
-class Ship:
+class Ship(Sprite):
     def __init__ (self, ai_game):
+        super().__init__()
+
         self.screen = ai_game.screen
         self.screen_rect = ai_game.screen.get_rect()
 
-        self.image = pygame.image.load('resources/ship2(no bg).png')
+        self.image = pygame.image.load('resources/ship.bmp')
         self.rect = self.image.get_rect()
 
         self.rect.midbottom = self.screen_rect.midbottom
