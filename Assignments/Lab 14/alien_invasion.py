@@ -18,8 +18,9 @@ class AlienInvasion:
         self.clock = pygame.time.Clock()
         self.stats = GameStats(self)
         self.score = Scoreboard(self)
-        self.laser_sound = pygame.mixer.Sound("sounds/alien_lazer.wav")
-        self.explosion_sound = pygame.mixer.Sound("sounds/alien_explosion.wav")
+        self.laser_sound = pygame.mixer.Sound("resources/alien_lazer.wav")
+        self.explosion_sound = pygame.mixer.Sound("resources/alien_explosion.wav")
+        self.bg_image = pygame.image.load("resources/background.jpg")
 
         self.ship = Ship(self)
         self.bullets = pygame.sprite.Group()
@@ -152,7 +153,7 @@ class AlienInvasion:
                 self._check_play_button(mouse_pos)
 
     def _update_screen(self):
-        self.screen.fill(self.settings.bg_color)
+        self.screen.blit(self.bg_image, (0, 0))
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()
 
