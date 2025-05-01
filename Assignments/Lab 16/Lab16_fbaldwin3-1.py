@@ -24,7 +24,7 @@ for row in reader:
 
 plt.style.use('dark_background')
 fig, ax = plt.subplots()
-ax.plot(dates, attendance_count, c='blue')
+ax.plot(dates, attendance_count)
 
 ax.set_title('Attendance Count', fontsize=24)
 ax.set_xlabel('', fontsize=16)
