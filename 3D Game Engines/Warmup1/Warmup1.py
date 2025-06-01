@@ -18,15 +18,16 @@ class MyApp(ShowBase):
         for i in range(100): # loop to create 100 cubes
             theta = x
             self.placeholder2 = self.render.attachNewNode('Placeholder2') # put in the renderer
-            self.placeholder2.setPos(50.0 * math.cos(theta), 50.0 * math.sin(theta), 0.0 * math.tan(theta))  # set position of placeholder2
+            self.placeholder2.setPos(50.0 * math.cos(theta), 50.0 * math.sin(theta), 0.0 * math.tan(theta)) # create circle of cubes
 
             red = 0.6 + random.random() * 0.4 # randomize colors
             green = 0.6 + random.random() * 0.4
             blue = 0.6 + random.random() * 0.4
+
             self.placeholder2.setColorScale(red, green, blue, 1.0)  # set color scale of placeholder2
 
             self.parent.instanceTo(self.placeholder2) # instance the cube model to placeholder2
-            x = x + 0.06 # adds incrementing spacing 
+            x = x + 0.06 # adds space between cubes
 
     def quit(self): # function to quit application
         sys.exit()
