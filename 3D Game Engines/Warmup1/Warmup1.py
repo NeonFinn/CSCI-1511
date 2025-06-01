@@ -26,7 +26,7 @@ class MyApp(ShowBase):
 
             self.placeholder2.setColorScale(red, green, blue, 1.0)  # set color scale of placeholder2
 
-            self.parent.instanceTo(self.placeholder2) # instance the cube model to placeholder2
+            self.parent.instanceTo(self.placeholder2) # take cube and instance to placeholder2
             x = x + 0.06 # adds space between cubes
 
     def quit(self): # function to quit application
