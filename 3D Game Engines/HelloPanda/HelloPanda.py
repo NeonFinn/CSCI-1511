@@ -6,14 +6,13 @@ from direct.actor.Actor import Actor
 from direct.interval.IntervalGlobal import Sequence
 from panda3d.core import Point3
 
-
 class MyApp(ShowBase):
     def __init__(self):
         ShowBase.__init__(self)
 
         # load model
         self.scene = self.loader.loadModel("models/environment")
-        # reparent model to renderer
+        # re-parent model to renderer
         self.scene.reparentTo(self.render)
         # scale and position model
         self.scene.setScale(0.25, 0.25, 0.25)
@@ -50,7 +49,7 @@ class MyApp(ShowBase):
                                   name="pandaPace")
         self.pandaPace.loop()
 
-    # define to spin camera
+    # spin camera
     def spinCameraTask(self, task):
         angleDegrees = task.time * 6.0
         angleRadians = angleDegrees * (pi / 180.0)

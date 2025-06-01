@@ -1,7 +1,6 @@
 from direct.showbase.ShowBase import ShowBase
 import math, sys, random
 
-
 class MyApp(ShowBase):
     def __init__(self):
         ShowBase.__init__(self)
@@ -29,7 +28,6 @@ class MyApp(ShowBase):
 
     def quit(self):
         sys.exit()
-
 
 app = MyApp()
 app.run()
