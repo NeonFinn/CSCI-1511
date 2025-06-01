@@ -1,5 +1,4 @@
 from math import pi, sin, cos
-
 from direct.showbase.ShowBase import ShowBase
 from direct.task import Task
 from direct.actor.Actor import Actor
@@ -10,53 +9,44 @@ class MyApp(ShowBase):
     def __init__(self):
         ShowBase.__init__(self)
 
-        # load model
-        self.scene = self.loader.loadModel("models/environment")
-        # re-parent model to renderer
-        self.scene.reparentTo(self.render)
-        # scale and position model
-        self.scene.setScale(0.25, 0.25, 0.25)
-        self.scene.setPos(-8, 42, 0)
+        self.scene = self.loader.loadModel("models/environment") # load environment model
+        self.scene.reparentTo(self.render) # re-parent to the renderer
+        self.scene.setScale(0.25, 0.25, 0.25) # scale model
+        self.scene.setPos(-8, 42, 0) # set position of model
 
-        # add spinCameraTask to the task manager
-        self.taskMgr.add(self.spinCameraTask, "SpinCameraTask")
+        self.taskMgr.add(self.spinCameraTask, "SpinCameraTask") # add task to spin camera
 
-        # load panda
         self.pandaActor = Actor("models/panda-model",
-                                {"walk": "models/panda-walk4"})
-        self.pandaActor.setScale(0.005, 0.005, 0.005)
-        self.pandaActor.reparentTo(self.render)
-        # loop the walking animation
-        self.pandaActor.loop("walk")
+                                {"walk": "models/panda-walk4"}) # load panda model and animation
+        self.pandaActor.setScale(0.005, 0.005, 0.005) # scale the panda model
+        self.pandaActor.reparentTo(self.render) # re-parent to the renderer
+        self.pandaActor.loop("walk") # loop the walk animation
 
         # create four intervals that allow the panda to walk back and forth
         posInterval1 = self.pandaActor.posInterval(13,
                                                    Point3(0, -10, 0),
-                                                   startPos=Point3(0, 10, 0))
+                                                   startPos=Point3(0, 10, 0)) # move panda from (0, 10, 0) to (0, -10, 0)
         posInterval2 = self.pandaActor.posInterval(13,
                                                    Point3(0, 10, 0),
-                                                   startPos=Point3(0, -10, 0))
+                                                   startPos=Point3(0, -10, 0)) # move panda from (0, -10, 0) to (0, 10, 0)
         hprInterval1 = self.pandaActor.hprInterval(3,
                                                    Point3(180, 0, 0),
-                                                   startHpr=Point3(0, 0, 0))
+                                                   startHpr=Point3(0, 0, 0)) # rotate panda from (0, 0, 0) to (180, 0, 0)
         hprInterval2 = self.pandaActor.hprInterval(3,
                                                    Point3(0, 0, 0),
-                                                   startHpr=Point3(180, 0, 0))
+                                                   startHpr=Point3(180, 0, 0)) # rotate panda from (180, 0, 0) to (0, 0, 0)
 
-        # create then play coordination intervals
         self.pandaPace = Sequence(posInterval1, hprInterval1,
                                   posInterval2, hprInterval2,
-                                  name="pandaPace")
-        self.pandaPace.loop()
+                                  name="pandaPace") # create sequence of intervals
+        self.pandaPace.loop() # loop the sequence
 
-    # spin camera
-    def spinCameraTask(self, task):
-        angleDegrees = task.time * 6.0
-        angleRadians = angleDegrees * (pi / 180.0)
-        self.camera.setPos(20 * sin(angleRadians), -20 * cos(angleRadians), 3)
-        self.camera.setHpr(angleDegrees, 0, 0)
+    def spinCameraTask(self, task): # task to spin the camera around the panda
+        angleDegrees = task.time * 6.0 # 6 degrees per second
+        angleRadians = angleDegrees * (pi / 180.0) # convert degrees to radians
+        self.camera.setPos(20 * sin(angleRadians), -20 * cos(angleRadians), 3) # set camera position in a circular path
+        self.camera.setHpr(angleDegrees, 0, 0) # set camera to face panda
         return Task.cont
 
-
-app = MyApp()
-app.run()
+app = MyApp() # create instance of MyApp
+app.run() # run application
