@@ -1,5 +1,7 @@
 from direct.showbase.ShowBase import ShowBase
 import math, sys, random
+from panda3d.core import CollisionTraverser, CollisionHandlerPusher
+from panda3d.core import CollisionNode, CollisionSphere
 
 class MyApp(ShowBase):
     def __init__(self):
@@ -14,7 +16,18 @@ class MyApp(ShowBase):
         self.fighter.setColorScale(1.0, 0.0, 0.0, 1.0) # set sphere color to red
         self.set_background_color(0,0,0) # set background color to black
 
-        self.accept('escape', self.quit) # if escape is pressed quit
+        # add collision to fighter
+        self.fighterCnode = self.fighter.attachNewNode(CollisionNode("fighterCnode")) # attach a new collision node to the fighter
+        self.fighterCnode.node().addSolid(CollisionSphere(0, 0, 0, 1.8)) # add a collision sphere to the collision node
+        self.fighterCnode.show() # show the collision node for debugging
+
+        # setup collision system
+        self.traverser = CollisionTraverser() # create a collision traverser
+        self.pusher = CollisionHandlerPusher() # create a collision handler pusher
+        self.pusher.addCollider(self.fighterCnode, self.fighter) # add collider to pusher
+        self.traverser.addCollider(self.fighterCnode, self.pusher) # add collider to traverser
+        self.cTrav = self.traverser # set the traverser to the collision traverser
+        self.cTrav.showCollisions(self.render) # show collisions in the render
 
         self.parent = self.loader.loadModel("./Assets/cube") # load the cube model
 
@@ -27,23 +40,30 @@ class MyApp(ShowBase):
             red = 0.6 + random.random() * 0.4 # randomize colors
             green = 0.6 + random.random() * 0.4
             blue = 0.6 + random.random() * 0.4
-
             self.placeholder2.setColorScale(red, green, blue, 1.0)  # set color scale of placeholder2
 
             self.parent.instanceTo(self.placeholder2) # take cube and instance to placeholder2
+
+            # add a collision node to each cube instance
+            cubeCnode = self.placeholder2.attachNewNode(CollisionNode("pcnode"))
+            cubeCnode.node().addSolid(CollisionSphere(0, 0, 0, 1.8))
+            cubeCnode.show()
+
             x = x + 0.06 # adds space between cubes
 
-            self.accept('arrow_left', self.negativeX, [1])  # if left arrow is pressed, call negativeX
-            self.accept('arrow_left-up', self.negativeX, [0])
-            self.accept('arrow_right', self.positiveX, [1])  # if right arrow is pressed, call positiveX
-            self.accept('arrow_right-up', self.positiveX, [0])
-            self.accept('arrow_down', self.negativeY, [1])  # if down arrow is pressed, call negativeY
-            self.accept('arrow_down-up', self.negativeY, [0])
-            self.accept('arrow_up', self.positiveY, [1])  # if up arrow is pressed, call positiveY
-            self.accept('arrow_up-up', self.positiveY, [0])
+        self.accept('escape', self.quit)  # if escape is pressed quit
+
+        self.accept('a', self.negativeX, [1])  # if left arrow is pressed, call negativeX True
+        self.accept('a-up', self.negativeX, [0])
+        self.accept('d', self.positiveX, [1])  # if right arrow is pressed, call positiveX True
+        self.accept('d-up', self.positiveX, [0])
+        self.accept('s', self.negativeY, [1])  # if down arrow is pressed, call negativeY True
+        self.accept('s-up', self.negativeY, [0])
+        self.accept('w', self.positiveY, [1])  # if up arrow is pressed, call positiveY True
+        self.accept('w-up', self.positiveY, [0])
 
     def movePositiveX(self, task):
-        self.fighter.setX(self.fighter, 1) # move fighter 1 unit in the positive X direction
+        self.fighter.setX(self.fighter, 0.5) # move fighter 0.5 units in the positive X direction
         return task.cont
 
     def positiveX(self, keyDown):
@@ -53,7 +73,7 @@ class MyApp(ShowBase):
             self.taskMgr.remove("movePositiveX") # if key is released, remove task
 
     def moveNegativeX(self, task):
-        self.fighter.setX(self.fighter, -1)
+        self.fighter.setX(self.fighter, -0.5)
         return task.cont # sets task to continue to the next frame
 
     def negativeX(self, keyDown):
@@ -63,7 +83,7 @@ class MyApp(ShowBase):
             self.taskMgr.remove("moveNegativeX") # if key is released, remove task
 
     def movePositiveY(self, task):
-        self.fighter.setY(self.fighter, 1)
+        self.fighter.setY(self.fighter, 0.5)
         return task.cont
 
     def positiveY(self, keyDown):
@@ -73,7 +93,7 @@ class MyApp(ShowBase):
             self.taskMgr.remove("movePositiveY")
 
     def moveNegativeY(self, task):
-        self.fighter.setY(self.fighter, -1)
+        self.fighter.setY(self.fighter, -0.5)
         return task.cont
 
     def negativeY(self, keyDown):
