@@ -12,22 +12,22 @@ class MyApp(ShowBase):
         self.camera.setHpr(0.0, -90.0, 0.0) # x, y, z axis rotation
 
         self.fighter = self.loader.loadModel('./Assets/sphere') # load the fighter model
-        self.fighter.reparentTo(self.render)
+        self.fighter.reparentTo(self.render) # add to scene graph, makes it visible
         self.fighter.setColorScale(1.0, 0.0, 0.0, 1.0) # set sphere color to red
         self.set_background_color(0,0,0) # set background color to black
 
         # add collision to fighter
         self.fighterCnode = self.fighter.attachNewNode(CollisionNode("fighterCnode")) # attach a new collision node to the fighter
         self.fighterCnode.node().addSolid(CollisionSphere(0, 0, 0, 1.8)) # add a collision sphere to the collision node
-        self.fighterCnode.show() # show the collision node for debugging
+        self.fighterCnode.show() # show the collision sphere on fighter for debugging
 
         # setup collision system
-        self.traverser = CollisionTraverser() # create a collision traverser
-        self.pusher = CollisionHandlerPusher() # create a collision handler pusher
-        self.pusher.addCollider(self.fighterCnode, self.fighter) # add collider to pusher
-        self.traverser.addCollider(self.fighterCnode, self.pusher) # add collider to traverser
-        self.cTrav = self.traverser # set the traverser to the collision traverser
-        self.cTrav.showCollisions(self.render) # show collisions in the render
+        self.traverser = CollisionTraverser() # object that detects collisions
+        self.pusher = CollisionHandlerPusher() # object that prevents overlapping by pushing objects apart
+        self.pusher.addCollider(self.fighterCnode, self.fighter) # assign fighter collider to pusher, fighter is object to be pushed
+        self.traverser.addCollider(self.fighterCnode, self.pusher) # add fighter collider to traverser with the pusher handler
+        self.cTrav = self.traverser # assign traverser so panda3d can use it
+        self.cTrav.showCollisions(self.render) # show where collisions are happening for debugging
 
         self.parent = self.loader.loadModel("./Assets/cube") # load the cube model
 
@@ -45,9 +45,9 @@ class MyApp(ShowBase):
             self.parent.instanceTo(self.placeholder2) # take cube and instance to placeholder2
 
             # add a collision node to each cube instance
-            cubeCnode = self.placeholder2.attachNewNode(CollisionNode("pcnode"))
-            cubeCnode.node().addSolid(CollisionSphere(0, 0, 0, 1.8))
-            cubeCnode.show()
+            cubeCnode = self.placeholder2.attachNewNode(CollisionNode("pcnode")) # add collision node to each cube instance
+            cubeCnode.node().addSolid(CollisionSphere(0, 0, 0, 1.8)) # add a collision sphere to the collision node
+            cubeCnode.show() # show the collision sphere on cubes for debugging
 
             x = x + 0.06 # adds space between cubes
 
