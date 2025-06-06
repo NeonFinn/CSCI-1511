@@ -12,7 +12,7 @@ class MyApp(ShowBase):
         self.camera.setHpr(0.0, -90.0, 0.0) # x, y, z axis rotation
 
         self.fighter = self.loader.loadModel('./Assets/sphere') # load the fighter model
-        self.fighter.reparentTo(self.render) # add to scene graph, makes it visible
+        self.fighter.reparentTo(self.render) # add fighter to scene graph (makes it visible)
         self.fighter.setColorScale(1.0, 0.0, 0.0, 1.0) # set sphere color to red
         self.set_background_color(0,0,0) # set background color to black
 
@@ -23,6 +23,7 @@ class MyApp(ShowBase):
 
         # setup collision system
         self.traverser = CollisionTraverser() # object that detects collisions
+        self.traverser.traverse(self.render)
         self.pusher = CollisionHandlerPusher() # object that prevents overlapping by pushing objects apart
         self.pusher.addCollider(self.fighterCnode, self.fighter) # assign fighter collider to pusher, fighter is object to be pushed
         self.traverser.addCollider(self.fighterCnode, self.pusher) # add fighter collider to traverser with the pusher handler
@@ -49,9 +50,9 @@ class MyApp(ShowBase):
             self.parent.instanceTo(self.placeholder2) # take cube and instance to placeholder2
 
             # add a collision node to each cube instance
-            cubeCnode = self.placeholder2.attachNewNode(CollisionNode("pcnode")) # add collision node to each cube instance
-            cubeCnode.node().addSolid(CollisionSphere(0, 0, 0, 1.8)) # add a collision sphere to the collision node
-            cubeCnode.show() # show the collision sphere on cubes for debugging
+            self.parentCnode = self.parent.attachNewNode(CollisionNode("pcnode")) # add collision node to each cube instance
+            self.parentCnode.node().addSolid(CollisionSphere(0, 0, 0, 1.8)) # add a collision sphere to the collision node
+            self.parentCnode.show() # show the collision sphere on cubes for debugging
 
             x = x + 0.06 # adds space between cubes
 
@@ -71,19 +72,19 @@ class MyApp(ShowBase):
 
     # functions to move fighter when called
     def movePositiveX(self, task):
-        self.fighter.setX(self.fighter, 0.5)
+        self.fighter.setX(self.fighter, 1)
         return task.cont
 
     def moveNegativeX(self, task):
-        self.fighter.setX(self.fighter, -0.5)
+        self.fighter.setX(self.fighter, -1)
         return task.cont
 
     def movePositiveY(self, task):
-        self.fighter.setY(self.fighter, 0.5)
+        self.fighter.setY(self.fighter, 1)
         return task.cont
 
     def moveNegativeY(self, task):
-        self.fighter.setY(self.fighter, -0.5)
+        self.fighter.setY(self.fighter, -1)
         return task.cont
 
     # if key is pressed, add task to move fighter, if key is released, remove task
