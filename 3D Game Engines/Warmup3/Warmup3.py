@@ -23,7 +23,7 @@ class MyApp(ShowBase):
 
         # setup collision system
         self.traverser = CollisionTraverser() # object that detects collisions
-        self.traverser.traverse(self.render)
+        self.traverser.traverse(self.render) # traverse the scene graph to find collisions
         self.pusher = CollisionHandlerPusher() # object that prevents overlapping by pushing objects apart
         self.pusher.addCollider(self.fighterCnode, self.fighter) # assign fighter collider to pusher, fighter is object to be pushed
         self.traverser.addCollider(self.fighterCnode, self.pusher) # add fighter collider to traverser with the pusher handler
