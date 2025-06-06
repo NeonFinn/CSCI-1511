@@ -50,9 +50,9 @@ class MyApp(ShowBase):
             self.parent.instanceTo(self.placeholder2) # take cube and instance to placeholder2
 
             # add a collision node to each cube instance
-            self.parentCnode = self.parent.attachNewNode(CollisionNode("pcnode")) # add collision node to each cube instance
-            self.parentCnode.node().addSolid(CollisionSphere(0, 0, 0, 1.8)) # add a collision sphere to the collision node
-            self.parentCnode.show() # show the collision sphere on cubes for debugging
+            cnode = self.placeholder2.attachNewNode(CollisionNode("pcnode")) # each cube has its own collision node, reusing was causing it to appear choppy
+            cnode.node().addSolid(CollisionSphere(0, 0, 0, 1.8)) # add a collision sphere to the collision node
+            cnode.show() # show the collision sphere on cubes for debugging
 
             x = x + 0.06 # adds space between cubes
 
@@ -72,19 +72,19 @@ class MyApp(ShowBase):
 
     # functions to move fighter when called
     def movePositiveX(self, task):
-        self.fighter.setX(self.fighter, 1)
+        self.fighter.setX(self.fighter, 0.5)
         return task.cont
 
     def moveNegativeX(self, task):
-        self.fighter.setX(self.fighter, -1)
+        self.fighter.setX(self.fighter, -0.5)
         return task.cont
 
     def movePositiveY(self, task):
-        self.fighter.setY(self.fighter, 1)
+        self.fighter.setY(self.fighter, 0.5)
         return task.cont
 
     def moveNegativeY(self, task):
-        self.fighter.setY(self.fighter, -1)
+        self.fighter.setY(self.fighter, -0.5)
         return task.cont
 
     # if key is pressed, add task to move fighter, if key is released, remove task
