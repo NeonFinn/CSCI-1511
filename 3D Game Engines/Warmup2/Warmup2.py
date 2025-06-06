@@ -33,17 +33,20 @@ class MyApp(ShowBase):
             self.parent.instanceTo(self.placeholder2) # take cube and instance to placeholder2
             x = x + 0.06 # adds space between cubes
 
-            self.accept('arrow_left', self.negativeX, [1])  # if left arrow is pressed, call negativeX
-            self.accept('arrow_left-up', self.negativeX, [0])
-            self.accept('arrow_right', self.positiveX, [1])  # if right arrow is pressed, call positiveX
-            self.accept('arrow_right-up', self.positiveX, [0])
-            self.accept('arrow_down', self.negativeY, [1])  # if down arrow is pressed, call negativeY
-            self.accept('arrow_down-up', self.negativeY, [0])
-            self.accept('arrow_up', self.positiveY, [1])  # if up arrow is pressed, call positiveY
-            self.accept('arrow_up-up', self.positiveY, [0])
+            self.accept('a', self.negativeX, [1])  # right
+            self.accept('a-up', self.negativeX, [0])
+
+            self.accept('d', self.positiveX, [1])  # left
+            self.accept('d-up', self.positiveX, [0])
+
+            self.accept('s', self.negativeY, [1])  # down
+            self.accept('s-up', self.negativeY, [0])
+
+            self.accept('w', self.positiveY, [1])  # up
+            self.accept('w-up', self.positiveY, [0])
 
     def movePositiveX(self, task):
-        self.fighter.setX(self.fighter, 1) # move fighter 1 unit in the positive X direction
+        self.fighter.setX(self.fighter, 0.5) # move fighter 1 unit in the positive X direction
         return task.cont
 
     def positiveX(self, keyDown):
@@ -53,7 +56,7 @@ class MyApp(ShowBase):
             self.taskMgr.remove("movePositiveX") # if key is released, remove task
 
     def moveNegativeX(self, task):
-        self.fighter.setX(self.fighter, -1)
+        self.fighter.setX(self.fighter, -0.5)
         return task.cont # sets task to continue to the next frame
 
     def negativeX(self, keyDown):
@@ -63,7 +66,7 @@ class MyApp(ShowBase):
             self.taskMgr.remove("moveNegativeX") # if key is released, remove task
 
     def movePositiveY(self, task):
-        self.fighter.setY(self.fighter, 1)
+        self.fighter.setY(self.fighter, 0.5)
         return task.cont
 
     def positiveY(self, keyDown):
@@ -73,7 +76,7 @@ class MyApp(ShowBase):
             self.taskMgr.remove("movePositiveY")
 
     def moveNegativeY(self, task):
-        self.fighter.setY(self.fighter, -1)
+        self.fighter.setY(self.fighter, -0.5)
         return task.cont
 
     def negativeY(self, keyDown):
