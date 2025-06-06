@@ -31,13 +31,17 @@ class MyApp(ShowBase):
 
         self.parent = self.loader.loadModel("./Assets/cube") # load the cube model
 
-        x = 0 # initialize x
-        for i in range(100): # loop to create 100 cubes
+        x = 0  # initialize x
+        for i in range(100):  # loop to create 100 cubes
             theta = x
-            self.placeholder2 = self.render.attachNewNode('Placeholder2') # put placeholder in renderer
-            self.placeholder2.setPos(50.0 * math.cos(theta), 50.0 * math.sin(theta), 0.0 * math.tan(theta)) # create circle of cubes
+            self.placeholder2 = self.render.attachNewNode('Placeholder2')  # put placeholder in renderer
+            self.placeholder2.setPos(
+                50.0 * math.cos(theta),  # x position
+                50.0 * math.sin(theta),  # y position
+                0.0                      # z position
+            )
 
-            red = 0.6 + random.random() * 0.4 # randomize colors
+            red = 0.6 + random.random() * 0.4  # randomize colors
             green = 0.6 + random.random() * 0.4
             blue = 0.6 + random.random() * 0.4
             self.placeholder2.setColorScale(red, green, blue, 1.0)  # set color scale of placeholder2
