@@ -24,7 +24,8 @@ class MyApp(ShowBase):
             self.placeholder2 = self.render.attachNewNode('Placeholder2') # put placeholder in renderer
             self.placeholder2.setPos(50.0 * math.cos(theta), 50.0 * math.sin(theta), 0.0 * math.tan(theta)) # create circle of cubes
 
-            red = 0.6 + random.random() * 0.4 # randomize colors
+            # randomize color of cubes
+            red = 0.6 + random.random() * 0.4
             green = 0.6 + random.random() * 0.4
             blue = 0.6 + random.random() * 0.4
 
@@ -45,39 +46,41 @@ class MyApp(ShowBase):
             self.accept('w', self.positiveY, [1])  # up
             self.accept('w-up', self.positiveY, [0])
 
+    # functions to move fighter when called
     def movePositiveX(self, task):
-        self.fighter.setX(self.fighter, 0.5) # move fighter 1 unit in the positive X direction
+        self.fighter.setX(self.fighter, 0.5)
         return task.cont
-
-    def positiveX(self, keyDown):
-        if (keyDown):
-            self.taskMgr.add(self.movePositiveX, "movePositiveX") # if key is pressed, add task to move fighter
-        else:
-            self.taskMgr.remove("movePositiveX") # if key is released, remove task
 
     def moveNegativeX(self, task):
         self.fighter.setX(self.fighter, -0.5)
-        return task.cont # sets task to continue to the next frame
-
-    def negativeX(self, keyDown):
-        if (keyDown):
-            self.taskMgr.add(self.moveNegativeX, "moveNegativeX")  # if key is pressed, add task to move fighter
-        else:
-            self.taskMgr.remove("moveNegativeX") # if key is released, remove task
+        return task.cont
 
     def movePositiveY(self, task):
         self.fighter.setY(self.fighter, 0.5)
         return task.cont
+
+    def moveNegativeY(self, task):
+        self.fighter.setY(self.fighter, -0.5)
+        return task.cont
+
+    # if key is pressed, add task to move fighter, if key is released, remove task
+    def positiveX(self, keyDown):
+        if (keyDown):
+            self.taskMgr.add(self.movePositiveX, "movePositiveX")
+        else:
+            self.taskMgr.remove("movePositiveX")
+
+    def negativeX(self, keyDown):
+        if (keyDown):
+            self.taskMgr.add(self.moveNegativeX, "moveNegativeX")
+        else:
+            self.taskMgr.remove("moveNegativeX")
 
     def positiveY(self, keyDown):
         if (keyDown):
             self.taskMgr.add(self.movePositiveY, "movePositiveY")
         else:
             self.taskMgr.remove("movePositiveY")
-
-    def moveNegativeY(self, task):
-        self.fighter.setY(self.fighter, -0.5)
-        return task.cont
 
     def negativeY(self, keyDown):
         if (keyDown):

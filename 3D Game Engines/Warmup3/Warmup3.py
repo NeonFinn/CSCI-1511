@@ -53,54 +53,62 @@ class MyApp(ShowBase):
 
         self.accept('escape', self.quit)  # if escape is pressed quit
 
-        self.accept('a', self.negativeX, [1])  # if left arrow is pressed, call negativeX True
+        self.accept('a', self.negativeX, [1])  # right
         self.accept('a-up', self.negativeX, [0])
-        self.accept('d', self.positiveX, [1])  # if right arrow is pressed, call positiveX True
+
+        self.accept('d', self.positiveX, [1])  # left
         self.accept('d-up', self.positiveX, [0])
-        self.accept('s', self.negativeY, [1])  # if down arrow is pressed, call negativeY True
+
+        self.accept('s', self.negativeY, [1])  # down
         self.accept('s-up', self.negativeY, [0])
-        self.accept('w', self.positiveY, [1])  # if up arrow is pressed, call positiveY True
+
+        self.accept('w', self.positiveY, [1])  # up
         self.accept('w-up', self.positiveY, [0])
 
+    # functions to move fighter when called
     def movePositiveX(self, task):
-        self.fighter.setX(self.fighter, 0.5) # move fighter 0.5 units in the positive X direction
+        self.fighter.setX(self.fighter, 0.5)
         return task.cont
-
-    def positiveX(self, keyDown):
-        if (keyDown):
-            self.taskMgr.add(self.movePositiveX, "movePositiveX") # if key is pressed, add task to move fighter
-        else:
-            self.taskMgr.remove("movePositiveX") # if key is released, remove task
 
     def moveNegativeX(self, task):
         self.fighter.setX(self.fighter, -0.5)
-        return task.cont # sets task to continue to the next frame
-
-    def negativeX(self, keyDown):
-        if (keyDown):
-            self.taskMgr.add(self.moveNegativeX, "moveNegativeX")  # if key is pressed, add task to move fighter
-        else:
-            self.taskMgr.remove("moveNegativeX") # if key is released, remove task
+        return task.cont
 
     def movePositiveY(self, task):
         self.fighter.setY(self.fighter, 0.5)
         return task.cont
 
-    def positiveY(self, keyDown):
-        if (keyDown):
-            self.taskMgr.add(self.movePositiveY, "movePositiveY")
-        else:
-            self.taskMgr.remove("movePositiveY")
-
     def moveNegativeY(self, task):
         self.fighter.setY(self.fighter, -0.5)
         return task.cont
+
+    # if key is pressed, add task to move fighter, if key is released, remove task
+    def positiveX(self, keyDown):
+        if (keyDown):
+            self.taskMgr.add(self.movePositiveX, "movePositiveX")
+        else:
+            self.taskMgr.remove("movePositiveX")
+
+    def negativeX(self, keyDown):
+        if (keyDown):
+            self.taskMgr.add(self.moveNegativeX, "moveNegativeX")
+        else:
+            self.taskMgr.remove("moveNegativeX")
+
+    def positiveY(self, keyDown):
+        if (keyDown):
+                self.taskMgr.add(self.movePositiveY, "movePositiveY")
+        else:
+            self.taskMgr.remove("movePositiveY")
 
     def negativeY(self, keyDown):
         if (keyDown):
             self.taskMgr.add(self.moveNegativeY, "moveNegativeY")
         else:
             self.taskMgr.remove("moveNegativeY")
+
+    def quit(self):  # function to quit application
+        sys.exit()
 
     def quit(self): # function to quit application
         sys.exit()
