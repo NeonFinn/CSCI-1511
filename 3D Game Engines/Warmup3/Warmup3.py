@@ -112,9 +112,6 @@ class MyApp(ShowBase):
         else:
             self.taskMgr.remove("moveNegativeY")
 
-    def quit(self):  # function to quit application
-        sys.exit()
-
     def quit(self): # function to quit application
         sys.exit()
 
